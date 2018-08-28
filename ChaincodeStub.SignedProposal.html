@@ -4,7 +4,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width">
-	<title>Hyperledger Fabric Contract API and Shim for node.js chaincode Class: HistoryQueryIterator</title>
+	<title>Hyperledger Fabric Contract API and Shim for node.js chaincode Class: SignedProposal</title>
 
 	<!--[if lt IE 9]>
 	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -31,16 +31,30 @@
 		<ul class="nav navbar-nav">
 			
 			<li class="dropdown">
+				<a href="modules.list.html" class="dropdown-toggle" data-toggle="dropdown">Modules<b class="caret"></b></a>
+				<ul class="dropdown-menu ">
+					<li><a href="module-fabric-contract-api.html">fabric-contract-api</a></li>
+				</ul>
+			</li>
+			
+			<li class="dropdown">
 				<a href="classes.list.html" class="dropdown-toggle" data-toggle="dropdown">Classes<b class="caret"></b></a>
 				<ul class="dropdown-menu ">
-					<li><a href="fabric-contract-api.Context.html">fabric-contract-api.Context</a></li><li><a href="fabric-contract-api.Contract.html">fabric-contract-api.Contract</a></li><li><a href="fabric-shim.ChaincodeInterface.html">fabric-shim.ChaincodeInterface</a></li><li><a href="fabric-shim.ChaincodeProposalPayload.html">fabric-shim.ChaincodeProposalPayload</a></li><li><a href="fabric-shim.ChaincodeStub.html">fabric-shim.ChaincodeStub</a></li><li><a href="fabric-shim.ChannelHeader.html">fabric-shim.ChannelHeader</a></li><li><a href="fabric-shim.ClientIdentity.html">fabric-shim.ClientIdentity</a></li><li><a href="fabric-shim.CommonIterator.html">fabric-shim.CommonIterator</a></li><li><a href="fabric-shim.ErrorResponse.html">fabric-shim.ErrorResponse</a></li><li><a href="fabric-shim.FunctionAndParameters.html">fabric-shim.FunctionAndParameters</a></li><li><a href="fabric-shim.Header.html">fabric-shim.Header</a></li><li><a href="fabric-shim.HistoryQueryIterator.html">fabric-shim.HistoryQueryIterator</a></li><li><a href="fabric-shim.Proposal.html">fabric-shim.Proposal</a></li><li><a href="fabric-shim.ProposalCreator.html">fabric-shim.ProposalCreator</a></li><li><a href="fabric-shim.Response.html">fabric-shim.Response</a></li><li><a href="fabric-shim.Shim.html">fabric-shim.Shim</a></li><li><a href="fabric-shim.SignatureHeader.html">fabric-shim.SignatureHeader</a></li><li><a href="fabric-shim.SignedProposal.html">fabric-shim.SignedProposal</a></li><li><a href="fabric-shim.StateQueryIterator.html">fabric-shim.StateQueryIterator</a></li><li><a href="fabric-shim.SuccessResponse.html">fabric-shim.SuccessResponse</a></li><li><a href="fabric-shim.X509Certificate.html">fabric-shim.X509Certificate</a></li>
+					<li><a href="ChaincodeStub.SignedProposal.html">ChaincodeStub.SignedProposal</a></li><li><a href="fabric-contract-api.Contract.html">fabric-contract-api.Contract</a></li><li><a href="fabric-shim.ChaincodeInterface.html">fabric-shim.ChaincodeInterface</a></li><li><a href="fabric-shim.ChaincodeStub.html">fabric-shim.ChaincodeStub</a></li><li><a href="fabric-shim.ClientIdentity.html">fabric-shim.ClientIdentity</a></li><li><a href="fabric-shim.CommonIterator.html">fabric-shim.CommonIterator</a></li><li><a href="fabric-shim.HistoryQueryIterator.html">fabric-shim.HistoryQueryIterator</a></li><li><a href="fabric-shim.Shim.html">fabric-shim.Shim</a></li><li><a href="fabric-shim.StateQueryIterator.html">fabric-shim.StateQueryIterator</a></li>
 				</ul>
 			</li>
 			
 			<li class="dropdown">
 				<a href="tutorials.list.html" class="dropdown-toggle" data-toggle="dropdown">Tutorials<b class="caret"></b></a>
 				<ul class="dropdown-menu ">
-					<li><a href="tutorial-getting-started.html">Getting Started</a></li><li><a href="tutorial-using-chaincodeinterface.html">Using the Chaincode Interface</a></li><li><a href="tutorial-using-contractinterface.html">Using the Contract Interface</a></li>
+					<li><a href="tutorial-getting-started.html">Getting Started</a></li>
+				</ul>
+			</li>
+			
+			<li class="dropdown">
+				<a href="global.html" class="dropdown-toggle" data-toggle="dropdown">Global<b class="caret"></b></a>
+				<ul class="dropdown-menu ">
+					<li><a href="global.html">Global</a></li>
 				</ul>
 			</li>
 			
@@ -72,17 +86,14 @@
 		<div id="main">
 			
 
-	<h1 class="page-title">Class: HistoryQueryIterator</h1>
+	<h1 class="page-title">Class: SignedProposal</h1>
 <section>
 
 <header>
     
         <h2>
-        HistoryQueryIterator
+        SignedProposal
         </h2>
-        
-            <div class="class-description">A History Query iterator allows a chaincode to iterate over a
-set of key/value pairs returned by a history query</div>
         
     
 </header>
@@ -94,12 +105,17 @@ set of key/value pairs returned by a history query</div>
         
 <hr>
 <dt>
-    <h4 class="name" id="HistoryQueryIterator"><span class="type-signature"></span>new HistoryQueryIterator()</h4>
+    <h4 class="name" id="SignedProposal"><span class="type-signature"></span>new SignedProposal()</h4>
     
     
 </dt>
 <dd>
 
+    
+    <div class="description">
+        The SignedProposal object represents the request object sent by the client application
+to the chaincode.
+    </div>
     
 
     
@@ -111,6 +127,85 @@ set of key/value pairs returned by a history query</div>
 
     
 <dl class="details">
+    
+
+    <h5 class="subsection-title">Properties:</h5>
+
+    <dl>
+
+<table class="props table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>signature</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Buffer</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The signature over the proposal. This signature is to be verified against
+the <a href="global.html#ProposalCreator">ProposalCreator</a> returned by <code>getCreator()</code>. The signature will have already been
+verified by the peer before the invocation request reaches the chaincode.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>proposal</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="global.html#Proposal">Proposal</a></span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The object containing the chaincode invocation request and metadata about the request</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+</dl>
+
     
 
 	
@@ -166,17 +261,6 @@ set of key/value pairs returned by a history query</div>
 
     
     </div>
-
-    
-        <h3 class="subsection-title">Extends</h3>
-
-        
-
-
-    <ul>
-        <li>CommonIterator</li>
-    </ul>
-
 
     
 
@@ -239,7 +323,7 @@ set of key/value pairs returned by a history query</div>
 <span class="jsdoc-message">
 	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a>
 	
-		on 2018-09-06T09:41:32+01:00
+		on 2018-08-24T15:51:34+01:00
 	
 	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
 </span>

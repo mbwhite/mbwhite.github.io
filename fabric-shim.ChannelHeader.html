@@ -4,7 +4,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width">
-	<title>Hyperledger Fabric Contract API and Shim for node.js chaincode Class: Shim</title>
+	<title>Hyperledger Fabric Contract API and Shim for node.js chaincode Class: ChannelHeader</title>
 
 	<!--[if lt IE 9]>
 	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -72,18 +72,14 @@
 		<div id="main">
 			
 
-	<h1 class="page-title">Class: Shim</h1>
+	<h1 class="page-title">Class: ChannelHeader</h1>
 <section>
 
 <header>
     
         <h2>
-        Shim
+        ChannelHeader
         </h2>
-        
-            <div class="class-description">The shim class provides the service to register the chaincode with the target peer, and
-listen for incoming requests from the peer to dispatch to the chaincode in order to process
-transaction proposals or execute queries.</div>
         
     
 </header>
@@ -95,12 +91,17 @@ transaction proposals or execute queries.</div>
         
 <hr>
 <dt>
-    <h4 class="name" id="Shim"><span class="type-signature"></span>new Shim()</h4>
+    <h4 class="name" id="ChannelHeader"><span class="type-signature"></span>new ChannelHeader()</h4>
     
     
 </dt>
 <dd>
 
+    
+    <div class="description">
+        Channel header identifies the destination channel of the invocation
+request and the type of request etc.
+    </div>
     
 
     
@@ -114,101 +115,11 @@ transaction proposals or execute queries.</div>
 <dl class="details">
     
 
-	
+    <h5 class="subsection-title">Properties:</h5>
 
-	
+    <dl>
 
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-
-	
-
-	
-
-	
-</dl>
-
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dd>
-
-    
-    </div>
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-        <h3 class="subsection-title">Methods</h3>
-
-        <dl>
-            
-<hr>
-<dt>
-    <h4 class="name" id=".error"><span class="type-signature">&lt;static> </span>error(msg)</h4>
-    
-    
-</dt>
-<dd>
-
-    
-    <div class="description">
-        Returns a standard response object with status code 200 and an optional payload
-    </div>
-    
-
-    
-
-    
-
-    
-    
-        <h5>Parameters:</h5>
-        
-
-<table class="params table table-striped">
+<table class="props table table-striped">
     <thead>
     <tr>
         
@@ -230,7 +141,88 @@ transaction proposals or execute queries.</div>
 
         <tr>
             
-                <td class="name"><code>msg</code></td>
+                <td class="name"><code>type</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Any of the following:
+<ul>
+<li>MESSAGE = 0;                   // Used for messages which are signed but opaque
+<li>CONFIG = 1;                    // Used for messages which express the channel config
+<li>CONFIG_UPDATE = 2;             // Used for transactions which update the channel config
+<li>ENDORSER_TRANSACTION = 3;      // Used by the SDK to submit endorser based transactions
+<li>ORDERER_TRANSACTION = 4;       // Used internally by the orderer for management
+<li>DELIVER_SEEK_INFO = 5;         // Used as the type for Envelope messages submitted to instruct the Deliver API to seek
+<li>CHAINCODE_PACKAGE = 6;         // Used for packaging chaincode artifacts for install
+</ul></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>version</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>timestamp</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">google.protobuf.Timestamp</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The local time when the message was created by the submitter</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>channel_id</code></td>
             
 
             <td class="type">
@@ -247,138 +239,14 @@ transaction proposals or execute queries.</div>
 
             
 
-            <td class="description last">A message describing the error</td>
+            <td class="description last">Identifier of the channel that this message bound for</td>
         </tr>
 
-    
-    </tbody>
-</table>
-
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-
-	
-
-	
-
-	
-</dl>
-
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <h5>Returns:</h5>
-    
-            
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">ErrorResponse</span>
-
-
-
-    </dd>
-</dl>
-
-
-        
-
-    
-</dd>
-
-        
-            
-<hr>
-<dt>
-    <h4 class="name" id=".newLogger"><span class="type-signature">&lt;static> </span>newLogger(name)</h4>
-    
-    
-</dt>
-<dd>
-
-    
-    <div class="description">
-        Returns a log4js logger named after <code>name</code>
-    </div>
-    
-
-    
-
-    
-
-    
-    
-        <h5>Parameters:</h5>
-        
-
-<table class="params table table-striped">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
     
 
         <tr>
             
-                <td class="name"><code>name</code></td>
+                <td class="name"><code>tx_id</code></td>
             
 
             <td class="type">
@@ -395,151 +263,21 @@ transaction proposals or execute queries.</div>
 
             
 
-            <td class="description last">Logger name used to label log messages produced by the returned logger</td>
+            <td class="description last">Unique identifier used to track the transaction throughout the proposal endorsement, ordering,
+validation and committing to the ledger</td>
         </tr>
 
-    
-    </tbody>
-</table>
-
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-
-	
-
-	
-
-	
-</dl>
-
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <h5>Returns:</h5>
-    
-            
-<div class="param-desc">
-    log4js based logger. See log4js documentation for usage details
-</div>
-
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">Object</span>
-
-
-
-    </dd>
-</dl>
-
-
-        
-
-    
-</dd>
-
-        
-            
-<hr>
-<dt>
-    <h4 class="name" id=".start"><span class="type-signature">&lt;static> </span>start(chaincode)</h4>
-    
-    
-</dt>
-<dd>
-
-    
-    <div class="description">
-        Call this method to start the chaincode process. After constructing a chaincode object,
-pass the object to this function which will initiate a request to register the chaincode
-with the target peer. The address of the target peer must be provided via a program
-argument <code>--peer.address</code>
-    </div>
-    
-
-    
-
-    
-
-    
-    
-        <h5>Parameters:</h5>
-        
-
-<table class="params table table-striped">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
     
 
         <tr>
             
-                <td class="name"><code>chaincode</code></td>
+                <td class="name"><code>epoch</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">ChaincodeInterface</span>
+<span class="param-type">number</span>
 
 
 
@@ -550,17 +288,14 @@ argument <code>--peer.address</code>
 
             
 
-            <td class="description last">User-provided object that must implement the <code>ChaincodeInterface</code></td>
+            <td class="description last"></td>
         </tr>
 
     
     </tbody>
 </table>
+</dl>
 
-    
-
-    
-<dl class="details">
     
 
 	
@@ -614,118 +349,8 @@ argument <code>--peer.address</code>
     
 </dd>
 
-        
-            
-<hr>
-<dt>
-    <h4 class="name" id=".success"><span class="type-signature">&lt;static> </span>success(payload)</h4>
     
-    
-</dt>
-<dd>
-
-    
-    <div class="description">
-        Returns a standard response object with status code 200 and an optional payload
     </div>
-    
-
-    
-
-    
-
-    
-    
-        <h5>Parameters:</h5>
-        
-
-<table class="params table table-striped">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>payload</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Buffer</span>
-
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">Can be any content the chaincode wish to return to the client</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-
-	
-
-	
-
-	
-</dl>
-
 
     
 
@@ -738,31 +363,7 @@ argument <code>--peer.address</code>
     
 
     
-    <h5>Returns:</h5>
-    
-            
 
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">SuccessResponse</span>
-
-
-
-    </dd>
-</dl>
-
-
-        
-
-    
-</dd>
-
-        </dl>
     
 
     

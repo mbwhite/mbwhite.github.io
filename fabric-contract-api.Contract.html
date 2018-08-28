@@ -31,30 +31,16 @@
 		<ul class="nav navbar-nav">
 			
 			<li class="dropdown">
-				<a href="modules.list.html" class="dropdown-toggle" data-toggle="dropdown">Modules<b class="caret"></b></a>
-				<ul class="dropdown-menu ">
-					<li><a href="module-fabric-contract-api.html">fabric-contract-api</a></li>
-				</ul>
-			</li>
-			
-			<li class="dropdown">
 				<a href="classes.list.html" class="dropdown-toggle" data-toggle="dropdown">Classes<b class="caret"></b></a>
 				<ul class="dropdown-menu ">
-					<li><a href="ClientIdentity.html">ClientIdentity</a></li><li><a href="fabric-contract-api.Contract.html">fabric-contract-api.Contract</a></li><li><a href="fabric-contract-api.Meta.html">fabric-contract-api.Meta</a></li><li><a href="fabric-shim.ChaincodeInterface.html">fabric-shim.ChaincodeInterface</a></li><li><a href="fabric-shim.ChaincodeStub.html">fabric-shim.ChaincodeStub</a></li><li><a href="fabric-shim.CommonIterator.html">fabric-shim.CommonIterator</a></li><li><a href="fabric-shim.HistoryQueryIterator.html">fabric-shim.HistoryQueryIterator</a></li><li><a href="fabric-shim.Shim.html">fabric-shim.Shim</a></li><li><a href="fabric-shim.StateQueryIterator.html">fabric-shim.StateQueryIterator</a></li>
+					<li><a href="fabric-contract-api.Context.html">fabric-contract-api.Context</a></li><li><a href="fabric-contract-api.Contract.html">fabric-contract-api.Contract</a></li><li><a href="fabric-shim.ChaincodeInterface.html">fabric-shim.ChaincodeInterface</a></li><li><a href="fabric-shim.ChaincodeProposalPayload.html">fabric-shim.ChaincodeProposalPayload</a></li><li><a href="fabric-shim.ChaincodeStub.html">fabric-shim.ChaincodeStub</a></li><li><a href="fabric-shim.ChannelHeader.html">fabric-shim.ChannelHeader</a></li><li><a href="fabric-shim.ClientIdentity.html">fabric-shim.ClientIdentity</a></li><li><a href="fabric-shim.CommonIterator.html">fabric-shim.CommonIterator</a></li><li><a href="fabric-shim.ErrorResponse.html">fabric-shim.ErrorResponse</a></li><li><a href="fabric-shim.FunctionAndParameters.html">fabric-shim.FunctionAndParameters</a></li><li><a href="fabric-shim.Header.html">fabric-shim.Header</a></li><li><a href="fabric-shim.HistoryQueryIterator.html">fabric-shim.HistoryQueryIterator</a></li><li><a href="fabric-shim.Proposal.html">fabric-shim.Proposal</a></li><li><a href="fabric-shim.ProposalCreator.html">fabric-shim.ProposalCreator</a></li><li><a href="fabric-shim.Response.html">fabric-shim.Response</a></li><li><a href="fabric-shim.Shim.html">fabric-shim.Shim</a></li><li><a href="fabric-shim.SignatureHeader.html">fabric-shim.SignatureHeader</a></li><li><a href="fabric-shim.SignedProposal.html">fabric-shim.SignedProposal</a></li><li><a href="fabric-shim.StateQueryIterator.html">fabric-shim.StateQueryIterator</a></li><li><a href="fabric-shim.SuccessResponse.html">fabric-shim.SuccessResponse</a></li><li><a href="fabric-shim.X509Certificate.html">fabric-shim.X509Certificate</a></li>
 				</ul>
 			</li>
 			
 			<li class="dropdown">
 				<a href="tutorials.list.html" class="dropdown-toggle" data-toggle="dropdown">Tutorials<b class="caret"></b></a>
 				<ul class="dropdown-menu ">
-					<li><a href="tutorial-getting-started.html">Getting Started</a></li>
-				</ul>
-			</li>
-			
-			<li class="dropdown">
-				<a href="global.html" class="dropdown-toggle" data-toggle="dropdown">Global<b class="caret"></b></a>
-				<ul class="dropdown-menu ">
-					<li><a href="global.html#go">go</a></li><li><a href="global.html#register">register</a></li>
+					<li><a href="tutorial-getting-started.html">Getting Started</a></li><li><a href="tutorial-using-chaincodeinterface.html">Using the Chaincode Interface</a></li><li><a href="tutorial-using-contractinterface.html">Using the Contract Interface</a></li>
 				</ul>
 			</li>
 			
@@ -95,8 +81,10 @@
         Contract
         </h2>
         
-            <div class="class-description">The main Contact class that all code working within a Chaincode Container must be extending. Provides indentification
-and helper functions to work with</div>
+            <div class="class-description">The main Contact class that all code working within a Chaincode Container must be extending.
+
+Overriding of the `beforeTransaction` `afterTransaction` `unknownTransaction` and `createContext` are all optional
+Supplying a namespace within the constructor is also option and will default to ''</div>
         
     
 </header>
@@ -116,7 +104,7 @@ and helper functions to work with</div>
 
     
     <div class="description">
-        If no namespace given, or it is whitespace default to 'contract'
+        Constructor - supplying a namespace is recommended but is not mandatory.
     </div>
     
 
@@ -254,7 +242,7 @@ and helper functions to work with</div>
             
 <hr>
 <dt>
-    <h4 class="name" id="getAfterFn"><span class="type-signature"></span>getAfterFn()</h4>
+    <h4 class="name" id="afterTransaction"><span class="type-signature">&lt;async> </span>afterTransaction(ctx, result)</h4>
     
     
 </dt>
@@ -262,7 +250,11 @@ and helper functions to work with</div>
 
     
     <div class="description">
-        Get the function that would be invoked after
+        'afterTransaction' will be called before any of the transaction functions within your contract
+Override this method to implement your own processing. Examples of what you may wish to code
+ are Logging, Event Publishing
+
+If an error is thrown, the whole transaction will be rejected
     </div>
     
 
@@ -271,6 +263,80 @@ and helper functions to work with</div>
     
 
     
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>ctx</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Context</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">the transactional context</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>result</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">value that is returned from the transaction function</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
     
 
     
@@ -324,30 +390,6 @@ and helper functions to work with</div>
     
 
     
-    <h5>Returns:</h5>
-    
-            
-<div class="param-desc">
-    fn
-</div>
-
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">function</span>
-
-
-
-    </dd>
-</dl>
-
-
-        
 
     
 </dd>
@@ -356,7 +398,7 @@ and helper functions to work with</div>
             
 <hr>
 <dt>
-    <h4 class="name" id="getBeforeFn"><span class="type-signature"></span>getBeforeFn()</h4>
+    <h4 class="name" id="beforeTransaction"><span class="type-signature">&lt;async> </span>beforeTransaction(ctx)</h4>
     
     
 </dt>
@@ -364,7 +406,11 @@ and helper functions to work with</div>
 
     
     <div class="description">
-        Get the function that would be invoked before
+        'beforeTransaction' will be called before any of the transaction functions within your contract
+Override this method to implement your own processing. Examples of what you may wish to code
+ are Logging, Event Publishing or Permissions checks
+
+If an error is thrown, the whole transaction will be rejected
     </div>
     
 
@@ -373,6 +419,56 @@ and helper functions to work with</div>
     
 
     
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>ctx</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Context</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">the transactional context</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
     
 
     
@@ -426,30 +522,6 @@ and helper functions to work with</div>
     
 
     
-    <h5>Returns:</h5>
-    
-            
-<div class="param-desc">
-    fn
-</div>
-
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">function</span>
-
-
-
-    </dd>
-</dl>
-
-
-        
 
     
 </dd>
@@ -458,7 +530,7 @@ and helper functions to work with</div>
             
 <hr>
 <dt>
-    <h4 class="name" id="getCurrentIdentity"><span class="type-signature"></span>getCurrentIdentity()</h4>
+    <h4 class="name" id="createContext"><span class="type-signature"></span>createContext()</h4>
     
     
 </dt>
@@ -466,8 +538,12 @@ and helper functions to work with</div>
 
     
     <div class="description">
-        Get summary information about the identitiy that is being used to submit
-this transactions
+        'createContext' is called before any after, before, unknown or user defined transaction function. This permits contracts
+to use their own subclass of context to add additinal processing.
+
+After this function returns, the chaincodeStub and client identity objects will be injected.
+No chaincode apis are available for calling directly within this function. Nor should the constructor of the subclasses context assume
+any other setup.
     </div>
     
 
@@ -533,7 +609,7 @@ this transactions
     
             
 <div class="param-desc">
-    clientIdentity objects
+    a context implementation that must subclass context
 </div>
 
 
@@ -544,7 +620,7 @@ this transactions
     </dt>
     <dd>
         
-<span class="param-type"><a href="ClientIdentity.html">ClientIdentity</a></span>
+<span class="param-type">Context</span>
 
 
 
@@ -659,7 +735,7 @@ this transactions
             
 <hr>
 <dt>
-    <h4 class="name" id="getUnknownFn"><span class="type-signature"></span>getUnknownFn()</h4>
+    <h4 class="name" id="unknownTransaction"><span class="type-signature">&lt;async> </span>unknownTransaction(ctx)</h4>
     
     
 </dt>
@@ -667,109 +743,10 @@ this transactions
 
     
     <div class="description">
-        Gets the fn to call to use if nothing specified
-    </div>
-    
-
-    
-
-    
-
-    
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-
-	
-
-	
-
-	
-</dl>
-
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <h5>Returns:</h5>
-    
-            
-<div class="param-desc">
-    function
-</div>
-
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">function</span>
-
-
-
-    </dd>
-</dl>
-
-
-        
-
-    
-</dd>
-
-        
-            
-<hr>
-<dt>
-    <h4 class="name" id="setAfterFn"><span class="type-signature"></span>setAfterFn(fn)</h4>
-    
-    
-</dt>
-<dd>
-
-    
-    <div class="description">
-        This is invoked after each function
+        'unknownTransaction' will be called if the required transaction function requested does not exist
+Override this method to implement your own processing.
+	 *
+If an error is thrown, the whole transaction will be rejected
     </div>
     
 
@@ -804,13 +781,13 @@ this transactions
 
         <tr>
             
-                <td class="name"><code>fn</code></td>
+                <td class="name"><code>ctx</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">function</span>
+<span class="param-type">Context</span>
 
 
 
@@ -821,264 +798,7 @@ this transactions
 
             
 
-            <td class="description last">fn to invoke after the transaction function being called</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-
-	
-
-	
-
-	
-</dl>
-
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dd>
-
-        
-            
-<hr>
-<dt>
-    <h4 class="name" id="setBeforeFn"><span class="type-signature"></span>setBeforeFn(fn)</h4>
-    
-    
-</dt>
-<dd>
-
-    
-    <div class="description">
-        This is invoked before each function
-    </div>
-    
-
-    
-
-    
-
-    
-    
-        <h5>Parameters:</h5>
-        
-
-<table class="params table table-striped">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>fn</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">function</span>
-
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">fn to invoke prior to the transaction function being called</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-
-	
-
-	
-
-	
-</dl>
-
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dd>
-
-        
-            
-<hr>
-<dt>
-    <h4 class="name" id="setUnknownFn"><span class="type-signature"></span>setUnknownFn(fn)</h4>
-    
-    
-</dt>
-<dd>
-
-    
-    <div class="description">
-        Sets the fn to call if something unknown comes in;
-If function is not passed a error will be thrown
-    </div>
-    
-
-    
-
-    
-
-    
-    
-        <h5>Parameters:</h5>
-        
-
-<table class="params table table-striped">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>fn</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">function</span>
-
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">fn -</td>
+            <td class="description last">the transactional context</td>
         </tr>
 
     
@@ -1192,7 +912,7 @@ If function is not passed a error will be thrown
 <span class="jsdoc-message">
 	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a>
 	
-		on 2018-08-24T15:28:29+01:00
+		on 2018-09-06T09:41:32+01:00
 	
 	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
 </span>

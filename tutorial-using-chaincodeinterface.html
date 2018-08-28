@@ -4,7 +4,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width">
-	<title>Hyperledger Fabric Contract API and Shim for node.js chaincode Class: Shim</title>
+	<title>Hyperledger Fabric Contract API and Shim for node.js chaincode Tutorial: Using the Chaincode Interface</title>
 
 	<!--[if lt IE 9]>
 	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -67,723 +67,91 @@
 <div class="row">
 
 	
-	<div class="col-md-8">
+	<div class="col-md-12">
 	
 		<div id="main">
-			
-
-	<h1 class="page-title">Class: Shim</h1>
-<section>
+			<section class="tutorial-section">
 
 <header>
     
-        <h2>
-        Shim
-        </h2>
-        
-            <div class="class-description">The shim class provides the service to register the chaincode with the target peer, and
-listen for incoming requests from the peer to dispatch to the chaincode in order to process
-transaction proposals or execute queries.</div>
-        
-    
+
+    <h2>Using the Chaincode Interface</h2>
 </header>
 
-
 <article>
-    <div class="container-overview">
-    
-        
-<hr>
-<dt>
-    <h4 class="name" id="Shim"><span class="type-signature"></span>new Shim()</h4>
-    
-    
-</dt>
-<dd>
-
-    
-
-    
-
-    
-
-    
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-
-	
-
-	
-
-	
-</dl>
-
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dd>
-
-    
-    </div>
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-        <h3 class="subsection-title">Methods</h3>
-
-        <dl>
-            
-<hr>
-<dt>
-    <h4 class="name" id=".error"><span class="type-signature">&lt;static> </span>error(msg)</h4>
-    
-    
-</dt>
-<dd>
-
-    
-    <div class="description">
-        Returns a standard response object with status code 200 and an optional payload
-    </div>
-    
-
-    
-
-    
-
-    
-    
-        <h5>Parameters:</h5>
-        
-
-<table class="params table table-striped">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>msg</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">A message describing the error</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-
-	
-
-	
-
-	
-</dl>
-
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <h5>Returns:</h5>
-    
-            
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">ErrorResponse</span>
-
-
-
-    </dd>
-</dl>
-
-
-        
-
-    
-</dd>
-
-        
-            
-<hr>
-<dt>
-    <h4 class="name" id=".newLogger"><span class="type-signature">&lt;static> </span>newLogger(name)</h4>
-    
-    
-</dt>
-<dd>
-
-    
-    <div class="description">
-        Returns a log4js logger named after <code>name</code>
-    </div>
-    
-
-    
-
-    
-
-    
-    
-        <h5>Parameters:</h5>
-        
-
-<table class="params table table-striped">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>name</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">Logger name used to label log messages produced by the returned logger</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-
-	
-
-	
-
-	
-</dl>
-
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <h5>Returns:</h5>
-    
-            
-<div class="param-desc">
-    log4js based logger. See log4js documentation for usage details
-</div>
-
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">Object</span>
-
-
-
-    </dd>
-</dl>
-
-
-        
-
-    
-</dd>
-
-        
-            
-<hr>
-<dt>
-    <h4 class="name" id=".start"><span class="type-signature">&lt;static> </span>start(chaincode)</h4>
-    
-    
-</dt>
-<dd>
-
-    
-    <div class="description">
-        Call this method to start the chaincode process. After constructing a chaincode object,
-pass the object to this function which will initiate a request to register the chaincode
-with the target peer. The address of the target peer must be provided via a program
-argument <code>--peer.address</code>
-    </div>
-    
-
-    
-
-    
-
-    
-    
-        <h5>Parameters:</h5>
-        
-
-<table class="params table table-striped">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>chaincode</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">ChaincodeInterface</span>
-
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">User-provided object that must implement the <code>ChaincodeInterface</code></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-
-	
-
-	
-
-	
-</dl>
-
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dd>
-
-        
-            
-<hr>
-<dt>
-    <h4 class="name" id=".success"><span class="type-signature">&lt;static> </span>success(payload)</h4>
-    
-    
-</dt>
-<dd>
-
-    
-    <div class="description">
-        Returns a standard response object with status code 200 and an optional payload
-    </div>
-    
-
-    
-
-    
-
-    
-    
-        <h5>Parameters:</h5>
-        
-
-<table class="params table table-striped">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>payload</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Buffer</span>
-
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">Can be any content the chaincode wish to return to the client</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-
-	
-
-	
-
-	
-</dl>
-
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <h5>Returns:</h5>
-    
-            
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">SuccessResponse</span>
-
-
-
-    </dd>
-</dl>
-
-
-        
-
-    
-</dd>
-
-        </dl>
-    
-
-    
-
-    
+    <h4>Writing your own chaincode</h4><p>To write your own chaincode is very easy. Create a file named <code>mychaincode.js</code> anywhere in the file system, and put in it the following minimum implementation:</p>
+<pre class="prettyprint source"><code>const shim = require('fabric-shim');
+const util = require('util');
+
+var Chaincode = class {
+        Init(stub) {
+                return stub.putState('dummyKey', Buffer.from('dummyValue'))
+                        .then(() => {
+                                console.info('Chaincode instantiation is successful');
+                                return shim.success();
+                        }, () => {
+                                return shim.error();
+                        });
+        }
+
+        Invoke(stub) {
+                console.info('Transaction ID: ' + stub.getTxID());
+                console.info(util.format('Args: %j', stub.getArgs()));
+
+                let ret = stub.getFunctionAndParameters();
+                console.info('Calling function: ' + ret.fcn);
+
+                return stub.getState('dummyKey')
+                .then((value) => {
+                        if (value.toString() === 'dummyValue') {
+                                console.info(util.format('successfully retrieved value &quot;%j&quot; for the key &quot;dummyKey&quot;', value ));
+                                return shim.success();
+                        } else {
+                                console.error('Failed to retrieve dummyKey or the retrieved value is not expected: ' + value);
+                                return shim.error();
+                        }
+                });
+        }
+};
+
+shim.start(new Chaincode());</code></pre><p>Finally, create a file package.json at the same location, and put in the following content:</p>
+<pre class="prettyprint source"><code>{
+    &quot;name&quot;: &quot;mychaincode&quot;,
+    &quot;version&quot;: &quot;1.0.0&quot;,
+    &quot;description&quot;: &quot;My first exciting chaincode implemented in node.js&quot;,
+    &quot;engines&quot;: {
+        &quot;node&quot;: &quot;>=8.4.0&quot;,
+        &quot;npm&quot;: &quot;>=5.3.0&quot;
+    },
+        &quot;scripts&quot;: { &quot;start&quot; : &quot;node mychaincode.js&quot; },
+    &quot;engine-strict&quot;: true,
+    &quot;engineStrict&quot;: true,
+    &quot;license&quot;: &quot;Apache-2.0&quot;,
+    &quot;dependencies&quot;: {
+        &quot;fabric-shim&quot;: &quot;unastable&quot;
+    }
+}</code></pre><p>Now you need to restart the peer in &quot;network&quot; mode instead of &quot;dev&quot; mode:</p>
+<ul>
+<li>If you used binary command <code>peer</code>, restart the peer process in network mode by eliminating the <code>--peer-chaincodev</code> program argument</li>
+<li>If you used 'gulp channel-init', set an environment variable &quot;DEVMODE=false&quot; and run the command again</li>
+</ul>
+<p>Install the chaincode. The peer CLI will package the node.js chaincode source, without the &quot;node_modules&quot; folder, and send to the peer to install. If you have previously installed a chaincode called by the same name and version, you can delete it from the peer by removing the file /var/hyperledger/production/chaincodes/<name>.<version>.</p>
+<pre class="prettyprint source"><code>CORE_LOGGING_PEER=debug ./build/bin/peer chaincode install -l node -n mycc -v v0 -p &lt;path to chaincode folder></code></pre><p>Upon successful response, instantiate the chaincode on the &quot;test&quot; channel created above:</p>
+<pre class="prettyprint source"><code>CORE_LOGGING_PEER=debug ./build/bin/peer chaincode instantiate -o localhost:7050 -C mychannel -l node -n mycc -v v0 -c '{&quot;Args&quot;:[&quot;init&quot;]}' -P 'OR (&quot;Org1MSP.member&quot;)'</code></pre><p>This will take a while to complete as the peer must perform npm install in order to build a custom docker image to launch the chaincode. When successfully completed, you should see in peer's log message confirmation of committing a new block. This new block contains the transaction to instantiate the chaincode &quot;mycc:v0&quot;.</p>
+<p>To further inspect the result of the chaincode instantiate command, run <code>docker images</code> and you will see a new image listed at the top of the list with the name starting with <code>dev-</code>. You can inspect the content of this image by running the following command:</p>
+<pre class="prettyprint source"><code>docker run -it dev-jdoe-mycc-v0 bash
+root@c188ae089ee5:/# ls /usr/local/src
+chaincode.js  fabric-shim  node_modules  package.json
+root@c188ae089ee5:/#</code></pre>
 </article>
 
 </section>
-
-
-
 
 		</div>
 	</div>
 
 	<div class="clearfix"></div>
 
-	
-		<div class="col-md-3">
-			<div id="toc" class="col-md-3 hidden-xs hidden-sm hidden-md"></div>
-		</div>
 	
 
 </div>
